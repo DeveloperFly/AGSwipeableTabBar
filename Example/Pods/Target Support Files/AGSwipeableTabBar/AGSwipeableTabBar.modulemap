@@ -1,0 +1,6 @@
+framework module AGSwipeableTabBar {
+  umbrella header "AGSwipeableTabBar-umbrella.h"
+
+  export *
+  module * { export * }
+}

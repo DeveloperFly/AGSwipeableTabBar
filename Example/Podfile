@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AGSwipeableTabBar_Example' do
+  pod 'AGSwipeableTabBar', :path => '../'
+
+  target 'AGSwipeableTabBar_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

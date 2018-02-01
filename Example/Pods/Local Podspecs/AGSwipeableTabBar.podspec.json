@@ -1,0 +1,22 @@
+{
+  "name": "AGSwipeableTabBar",
+  "version": "0.1.0",
+  "summary": "A short description of AGSwipeableTabBar.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/aman19ish/AGSwipeableTabBar",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "aman19ish": "aman.gupta@finoit.co.in"
+  },
+  "source": {
+    "git": "https://github.com/aman19ish/AGSwipeableTabBar.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "AGSwipeableTabBar/Classes/**/*"
+}
