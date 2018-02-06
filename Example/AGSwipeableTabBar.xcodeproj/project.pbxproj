@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		44336D460D9DBBE2DDD1AFB6 /* Pods_AGSwipeableTabBar_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FEE319D81BCD1D83EFB6DDC /* Pods_AGSwipeableTabBar_Example.framework */; };
+		4CA4324820299727003277CD /* TabOneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4324320299727003277CD /* TabOneTableViewCell.swift */; };
+		4CA4324920299727003277CD /* TabOneTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4324420299727003277CD /* TabOneTableViewCell.xib */; };
+		4CA4324A20299727003277CD /* TabOneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4324620299727003277CD /* TabOneCollectionViewCell.swift */; };
+		4CA4324B20299727003277CD /* TabOneCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4324720299727003277CD /* TabOneCollectionViewCell.xib */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -30,6 +34,10 @@
 /* Begin PBXFileReference section */
 		14AE2CE7FAAB11B9D0EBC42A /* AGSwipeableTabBar.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AGSwipeableTabBar.podspec; path = ../AGSwipeableTabBar.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		325C9CD490A9735C3479E66D /* Pods_AGSwipeableTabBar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AGSwipeableTabBar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CA4324320299727003277CD /* TabOneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabOneTableViewCell.swift; sourceTree = "<group>"; };
+		4CA4324420299727003277CD /* TabOneTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabOneTableViewCell.xib; sourceTree = "<group>"; };
+		4CA4324620299727003277CD /* TabOneCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabOneCollectionViewCell.swift; sourceTree = "<group>"; };
+		4CA4324720299727003277CD /* TabOneCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabOneCollectionViewCell.xib; sourceTree = "<group>"; };
 		5BA8EA4AE9EB76F3D3290043 /* Pods-AGSwipeableTabBar_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGSwipeableTabBar_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AGSwipeableTabBar_Tests/Pods-AGSwipeableTabBar_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* AGSwipeableTabBar_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AGSwipeableTabBar_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +87,41 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4CA4324020299727003277CD /* TabVIew */ = {
+			isa = PBXGroup;
+			children = (
+				4CA4324120299727003277CD /* TabeOne */,
+			);
+			path = TabVIew;
+			sourceTree = "<group>";
+		};
+		4CA4324120299727003277CD /* TabeOne */ = {
+			isa = PBXGroup;
+			children = (
+				4CA4324220299727003277CD /* Cell */,
+				4CA4324520299727003277CD /* Controller */,
+			);
+			path = TabeOne;
+			sourceTree = "<group>";
+		};
+		4CA4324220299727003277CD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4CA4324320299727003277CD /* TabOneTableViewCell.swift */,
+				4CA4324420299727003277CD /* TabOneTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		4CA4324520299727003277CD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4CA4324620299727003277CD /* TabOneCollectionViewCell.swift */,
+				4CA4324720299727003277CD /* TabOneCollectionViewCell.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +146,7 @@
 		607FACD21AFB9204008FA782 /* Example for AGSwipeableTabBar */ = {
 			isa = PBXGroup;
 			children = (
+				4CA4324020299727003277CD /* TabVIew */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -246,6 +290,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CA4324920299727003277CD /* TabOneTableViewCell.xib in Resources */,
+				4CA4324B20299727003277CD /* TabOneCollectionViewCell.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -368,6 +414,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CA4324820299727003277CD /* TabOneTableViewCell.swift in Sources */,
+				4CA4324A20299727003277CD /* TabOneCollectionViewCell.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

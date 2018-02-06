@@ -20,8 +20,31 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agY-1A-SmP" customClass="AGCommonTabView" customModule="AGSwipeableTabBar">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="heightTabCollectionPerportional">
+                                        <real key="value" value="0.10000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="numberOfitemInSection">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="agY-1A-SmP" secondAttribute="trailing" id="52p-4H-BT1"/>
+                            <constraint firstItem="agY-1A-SmP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="D1W-10-8UY"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="agY-1A-SmP" secondAttribute="bottom" id="lvb-Zy-8YU"/>
+                            <constraint firstItem="agY-1A-SmP" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="r5A-Zq-iWu"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tabView" destination="agY-1A-SmP" id="Pwx-3y-dwy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
