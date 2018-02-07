@@ -23,10 +23,26 @@ class AGTabViewCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var isSelected: Bool {
+        didSet {
+            buttonTabBar.isSelected = isSelected
+            self.reloadInputViews()
+        }
+    }
+    
+    override var isHighlighted: Bool {
+        didSet {
+            buttonTabBar.isHighlighted = isHighlighted
+        }
+    }
+    
     func setUpCollectionViewCell() {
         buttonTabBar.frame = CGRect(x: 2, y: 0, width: self.frame.size.width - 4, height: self.frame.size.height)
         buttonTabBar.addTarget(self, action: #selector(tapTabBarrButton), for: .touchUpInside)
         buttonTabBar.setTitle("tab", for: .normal)
+        buttonTabBar.setTitleColor(UIColor.black, for: .normal)
+        buttonTabBar.setTitleColor(UIColor.red, for: .selected)
+        buttonTabBar.backgroundColor = UIColor.green
         self.contentView.addSubview(buttonTabBar)
     }
     
@@ -59,7 +75,8 @@ class AGTabViewCollectionViewCell: UICollectionViewCell {
     }
     
     @objc func tapTabBarrButton(_ sender: UIButton) {
-        
+        return
     }
     
 }
+

@@ -19,7 +19,6 @@ class ViewController: UIViewController, CommonTabDelegate {
         super.viewDidLoad()
         tabView.detailCollectionView.register(UINib.init(nibName: "TabOneCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOneCollectionViewCell")
         tabView.delegate = self
-//        tabView.numberOfitemInSection = 5
 //        tabView.isShowBottomTabBar = true
 //        tabView.bottomBarHeight = 2
 //        tabView.tabBarData.buttonTitleTextArray = arrayTitle

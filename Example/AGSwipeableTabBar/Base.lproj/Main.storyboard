@@ -26,20 +26,29 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="heightTabCollectionPerportional">
-                                        <real key="value" value="0.10000000000000001"/>
+                                        <real key="value" value="0.070000000000000007"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfitemInSection">
-                                        <integer key="value" value="4"/>
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumLineSpacingTab">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumCellSpacingTab">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="tabBottomBarHeight">
+                                        <real key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="agY-1A-SmP" secondAttribute="trailing" id="52p-4H-BT1"/>
-                            <constraint firstItem="agY-1A-SmP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="D1W-10-8UY"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="agY-1A-SmP" secondAttribute="bottom" id="lvb-Zy-8YU"/>
-                            <constraint firstItem="agY-1A-SmP" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="r5A-Zq-iWu"/>
+                            <constraint firstItem="agY-1A-SmP" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="0cC-7V-lpN"/>
+                            <constraint firstAttribute="trailing" secondItem="agY-1A-SmP" secondAttribute="trailing" id="8rN-or-zxK"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="agY-1A-SmP" secondAttribute="bottom" id="MJV-oP-qYh"/>
+                            <constraint firstItem="agY-1A-SmP" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="nJT-rM-3Ge"/>
                         </constraints>
                     </view>
                     <connections>
@@ -48,6 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="32.833583208395808"/>
         </scene>
     </scenes>
 </document>
