@@ -21,13 +21,10 @@ class ViewController: UIViewController, CommonTabDelegate {
         tabView.delegate = self
         tabView.isShowBottomTabBar = true
         tabView.tabBottomBarHeight = 2
-//        tabView.isTabViewEqualScreenWidth = false
         tabView.tabBarData.buttonTitleTextArray = arrayTitle
         tabView.tabBarData.tabHeader = .title
         tabView.tabBarData.buttonNormalFontColor = UIColor.black
-        tabView.initialSelectedTab(2)
-//        tabView.minimumLineSpacing = 10
-//        tabView.minimumCellSpacing = 10
+        tabView.initialSelectedTab(index: 1)
     }
     
     override func didReceiveMemoryWarning() {

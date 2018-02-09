@@ -70,6 +70,7 @@ class AGTabViewCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    //MARK: - Action Method
     @objc func tapTabBarrButton(_ sender: UIButton) {
         return
     }
