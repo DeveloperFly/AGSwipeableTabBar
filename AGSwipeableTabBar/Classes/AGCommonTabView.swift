@@ -227,14 +227,14 @@ extension AGCommonTabView: UICollectionViewDelegate {
 extension AGCommonTabView {
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView.isEqual(tabCollectionView) {
-            return minimumTabLineSpacing
+            return 0
         }
         return 0
     }
 
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView.isEqual(tabCollectionView) {
-            return minimumTabCellSpacing
+            return 0
         }
         return 0
     }
