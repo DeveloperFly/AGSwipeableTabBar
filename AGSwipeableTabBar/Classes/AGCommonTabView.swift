@@ -54,6 +54,12 @@ open class AGCommonTabView: UIControl {
         }
     }
     
+    open var tabBarBackgroundColor: CGColor? {
+        didSet {
+            self.tabBottomLayer.backgroundColor = tabBarBackgroundColor ?? UIColor.blue.cgColor
+        }
+    }
+    
     var minimumTabLineSpacing: CGFloat = 5 {
         didSet {
         }
@@ -72,7 +78,7 @@ open class AGCommonTabView: UIControl {
     
     /* By defaul Tab view is equal to screen width
     */
-    var isTabViewEqualScreenWidth: Bool = true {
+    var isTabViewEqualScreenWidth: Bool = false {
         didSet {
         }
     }
@@ -159,7 +165,7 @@ open class AGCommonTabView: UIControl {
     
     fileprivate func configureView() {
         tabBottomLayer.frame = CGRect(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight  , width: 200, height: tabBottomBarHeight)
-        tabBottomLayer.backgroundColor = UIColor.blue.cgColor
+        tabBottomLayer.backgroundColor = tabBarBackgroundColor
         tabCollectionView.layer.addSublayer(tabBottomLayer)
     }
     
@@ -217,6 +223,7 @@ extension AGCommonTabView: UICollectionViewDelegate {
     
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView.isEqual(tabCollectionView) {
+            tabCollectionView.scrollToItem(at: indexPath, at: [.centeredHorizontally], animated: true)
             detailCollectionView.scrollToItem(at: indexPath, at: [], animated: false)
         }
     }
@@ -250,13 +257,15 @@ extension AGCommonTabView: UICollectionViewDelegateFlowLayout {
                 if numberOfitemInSection <= 3 || isTabViewEqualScreenWidth {
                     if self.isInitialCall {
                         self.isInitialCall = false
-                          tabBottomLayer.frame = CGRect.init(x: CGFloat(CGFloat(self.intialSelectedTab) *  CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)) - 1), y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)), height: tabBottomBarHeight)
+                        tabBottomLayer.frame = CGRect.init(x: CGFloat(CGFloat(self.intialSelectedTab) *  CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)) - 1), y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)), height: tabBottomBarHeight)
                         detailCollectionView.scrollToItem(at: IndexPath.init(item: self.intialSelectedTab, section: 0), at: [], animated: false)
                     }
-                  
                     return CGSize(width: CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)), height: CGFloat(tabCollectionView.frame.size.height))
                 } else if indexPath.row == 0 {
-                    tabBottomLayer.frame = CGRect.init(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: (tabBarData.buttonTitleTextArray.count == 0 ? getWidthForCell(withMessage: "Tab \(indexPath.item + 1)") : (getWidthForCell(withMessage: tabBarData.buttonTitleTextArray[indexPath.row]) + 5)), height: tabBottomBarHeight)
+                    if self.isInitialCall {
+//                        self.isInitialCall = false
+                        tabBottomLayer.frame = CGRect.init(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: (tabBarData.buttonTitleTextArray.count == 0 ? getWidthForCell(withMessage: "Tab \(indexPath.item + 1)") : (getWidthForCell(withMessage: tabBarData.buttonTitleTextArray[indexPath.row]) + 5)), height: tabBottomBarHeight)
+                    }
                 }
                 return CGSize(width: (tabBarData.buttonTitleTextArray.count == 0 ? getWidthForCell(withMessage: "Tab \(indexPath.item + 1)") : getWidthForCell(withMessage: tabBarData.buttonTitleTextArray[indexPath.row])) + 8, height: CGFloat(tabCollectionView.frame.size.height))
                 

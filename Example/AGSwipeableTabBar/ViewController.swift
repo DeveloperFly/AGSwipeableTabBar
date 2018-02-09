@@ -20,11 +20,12 @@ class ViewController: UIViewController, CommonTabDelegate {
         tabView.detailCollectionView.register(UINib.init(nibName: "TabOneCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOneCollectionViewCell")
         tabView.delegate = self
         tabView.isShowBottomTabBar = true
-        tabView.tabBottomBarHeight = 2
+        tabView.tabBottomBarHeight = 7
+        tabView.tabBarBackgroundColor = UIColor.red.cgColor
         tabView.tabBarData.buttonTitleTextArray = arrayTitle
         tabView.tabBarData.tabHeader = .title
         tabView.tabBarData.buttonNormalFontColor = UIColor.black
-        tabView.initialSelectedTab(index: 1)
+        tabView.initialSelectedTab(index: 7)
     }
     
     override func didReceiveMemoryWarning() {
