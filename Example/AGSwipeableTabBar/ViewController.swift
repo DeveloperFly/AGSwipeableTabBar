@@ -19,11 +19,13 @@ class ViewController: UIViewController, CommonTabDelegate {
         super.viewDidLoad()
         tabView.detailCollectionView.register(UINib.init(nibName: "TabOneCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TabOneCollectionViewCell")
         tabView.delegate = self
-//        tabView.isShowBottomTabBar = true
-//        tabView.bottomBarHeight = 2
-//        tabView.tabBarData.buttonTitleTextArray = arrayTitle
-//        tabView.tabBarData.tabHeader = .title
-//        tabView.initialSelectedTab(0)
+        tabView.isShowBottomTabBar = true
+        tabView.tabBottomBarHeight = 2
+//        tabView.isTabViewEqualScreenWidth = false
+        tabView.tabBarData.buttonTitleTextArray = arrayTitle
+        tabView.tabBarData.tabHeader = .title
+        tabView.tabBarData.buttonNormalFontColor = UIColor.black
+        tabView.initialSelectedTab(2)
 //        tabView.minimumLineSpacing = 10
 //        tabView.minimumCellSpacing = 10
     }
