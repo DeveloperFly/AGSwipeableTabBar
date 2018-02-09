@@ -22,7 +22,7 @@ pod 'AGSwipeableTabBar'
 
 ## Author
 
-aman19ish, aman.gupta@finoit.co.in
+aman19ish@gmail.com
 
 ## License
 
