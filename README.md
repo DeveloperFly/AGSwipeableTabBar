@@ -6,6 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/AGSwipeableTabBar.svg?style=flat)](http://cocoapods.org/pods/AGSwipeableTabBar)
 
 ## Example
+![Example](https://github.com/DeveloperFly/AGSwipeableTabBar/blob/master/Example/Resources/Images/Simulator%20Screen%20Shot%20-%20iPhone%208%20Plus%20-%202018-02-09%20at%2015.25.28.png)
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 

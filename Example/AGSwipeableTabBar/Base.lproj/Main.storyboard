@@ -29,7 +29,7 @@
                                         <real key="value" value="0.070000000000000007"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfitemInSection">
-                                        <integer key="value" value="9"/>
+                                        <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="minimumLineSpacingTab">
                                         <real key="value" value="0.0"/>
