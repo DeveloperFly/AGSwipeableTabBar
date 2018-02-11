@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/aman19ish/AGSwipeableTabBar'
+  s.homepage         = 'https://github.com/DeveloperFly/AGSwipeableTabBar'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'aman19ish' => 'aman19ish@gmail.com' }
-  s.source           = { :git => 'https://github.com/aman19ish/AGSwipeableTabBar.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/DeveloperFly/AGSwipeableTabBar', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
