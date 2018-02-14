@@ -11,7 +11,8 @@ let kAGTabBarSelectedColor = "selectedColor"
 let kAGTabBarTitleTextFont = "titleFont"
 let kAGTabHeaderType = "tabHeaderType"
 let kAGTabBarTitleTextArray = "titleTextArray"
-let kAGTabBarImageArray = "imageArray"
+let kAGTabBarImageNormalArray = "imageNormalArray"
+let kAGTabBarImageSelectedArray = "imageSelectedArray"
 let kAGTabBarIconTabWidth = "iconTabWidth"
 
 public enum TabHeaderType {
@@ -27,7 +28,8 @@ public class TabButtonData: NSObject {
     public var buttonTitleTextFont : UIFont!
     public var buttonTitleTextArray = [String]()
     
-    public var buttonImageArray = [UIImage]()
+    public var buttonNormalImageArray = [UIImage]()
+    public var buttonSelectedImageArray = [UIImage]()
     public var buttonNormalIconColor : UIColor!
     public var buttonSelectedIconColor : UIColor!
     public var tabHeader = TabHeaderType.title
@@ -47,7 +49,8 @@ public class TabButtonData: NSObject {
             buttonSelectedFontColor = ((tabBarFeturesDictionary[kAGTabBarSelectedColor] != nil) ? (tabBarFeturesDictionary[kAGTabBarSelectedColor] as! UIColor) : UIColor.red)
             buttonTitleTextFont = ((tabBarFeturesDictionary[kAGTabBarTitleTextFont] != nil) ? (tabBarFeturesDictionary[kAGTabBarTitleTextFont] as! UIFont) : UIFont.systemFont(ofSize: 17.0))
         case .icon :
-            buttonImageArray = (tabBarFeturesDictionary[kAGTabBarImageArray] != nil ? tabBarFeturesDictionary[kAGTabBarImageArray] as! Array : [])
+            buttonNormalImageArray = (tabBarFeturesDictionary[kAGTabBarImageNormalArray] != nil ? tabBarFeturesDictionary[kAGTabBarImageNormalArray] as! Array : [])
+            buttonSelectedImageArray = (tabBarFeturesDictionary[kAGTabBarImageSelectedArray] != nil ? tabBarFeturesDictionary[kAGTabBarImageSelectedArray] as! Array : [])
             buttonNormalFontColor = ((tabBarFeturesDictionary[kAGTabBarNormalColor] != nil) ? (tabBarFeturesDictionary[kAGTabBarNormalColor] as! UIColor) : UIColor.blue)
             buttonSelectedFontColor = ((tabBarFeturesDictionary[kAGTabBarSelectedColor] != nil) ? (tabBarFeturesDictionary[kAGTabBarSelectedColor] as! UIColor) : UIColor.red)
             iconTabWidth = ((tabBarFeturesDictionary[kAGTabBarIconTabWidth] != nil) ? (tabBarFeturesDictionary[kAGTabBarSelectedColor] as! CGFloat) : 50)

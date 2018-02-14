@@ -20,8 +20,9 @@ open class AGCommonTabView: UIControl {
     //MARK: - Custom Views
     open var tabCollectionView: UICollectionView!
     open var detailCollectionView: UICollectionView!
+    open var sepratorView = UIView()
     open var tabBottomLayer = CALayer()
-
+    
     //MARK: - Private variablse
     private let agTabViewCellIdentifier = "AGTabViewCollectionViewCell"
     private var isInitialCall = true
@@ -111,11 +112,27 @@ open class AGCommonTabView: UIControl {
         }
     }
     
+    //MARK: - Seprator View properties
+    //Set seprator view height
+    open var sepratorViewHeight: CGFloat = 1 {
+        didSet {
+            self.sepratorView.frame.size.height = sepratorViewHeight
+        }
+    }
+    
+    //Seprator view bottom color
+    open var sepratorViewBackgroundColor: UIColor? {
+        didSet {
+            self.sepratorView.backgroundColor = sepratorViewBackgroundColor
+        }
+    }
+    
     //MARK:- Overloaded Methods
     open override func layoutSubviews() {
         super.layoutSubviews()
         self.tabCollectionView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * heightTabViewPerportional )
-        self.detailCollectionView.frame = CGRect(x: 0, y: self.frame.height * heightTabViewPerportional, width: self.frame.width, height: (self.frame.height - (self.frame.height * heightTabViewPerportional)))
+        self.detailCollectionView.frame = CGRect(x: 0, y: ((self.frame.height * heightTabViewPerportional) + sepratorViewHeight), width: self.frame.width, height: (self.frame.height - ((self.frame.height * heightTabViewPerportional) + sepratorViewHeight)))
+        sepratorView.frame = CGRect(x: 0, y: (self.frame.height * heightTabViewPerportional), width: self.frame.width, height: sepratorViewHeight)
     }
     
     override init(frame: CGRect) {
@@ -134,6 +151,7 @@ open class AGCommonTabView: UIControl {
     
     func setupCollectionView() {
         drawTabCollectionView()
+        drawSepratorView()
         drawDetailCollectionView()
     }
     
@@ -151,10 +169,16 @@ open class AGCommonTabView: UIControl {
 
     }
     
+    func drawSepratorView() {
+        sepratorView.frame = CGRect(x: 0, y: (self.frame.height * heightTabViewPerportional), width: self.frame.width, height: sepratorViewHeight)
+        sepratorView.backgroundColor = sepratorViewBackgroundColor ?? UIColor.lightGray
+        self.addSubview(sepratorView)
+    }
+    
     func drawDetailCollectionView() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        let frame = CGRect(x: 0, y: self.frame.height * heightTabViewPerportional, width: self.frame.width, height: (self.frame.height - (self.frame.height * heightTabViewPerportional)))
+        let frame = CGRect(x: 0, y: ((self.frame.height * heightTabViewPerportional) + sepratorViewHeight), width: self.frame.width, height: (self.frame.height - ((self.frame.height * heightTabViewPerportional) + sepratorViewHeight)))
         self.detailCollectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
         self.detailCollectionView.isPagingEnabled = true
         self.detailCollectionView.delegate = self
@@ -164,7 +188,7 @@ open class AGCommonTabView: UIControl {
     }
     
     fileprivate func configureView() {
-        tabBottomLayer.frame = CGRect(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight  , width: 200, height: tabBottomBarHeight)
+        tabBottomLayer.frame = CGRect(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight  , width: 0, height: tabBottomBarHeight)
         tabBottomLayer.backgroundColor = tabBarBackgroundColor
         tabCollectionView.layer.addSublayer(tabBottomLayer)
     }
@@ -271,11 +295,18 @@ extension AGCommonTabView: UICollectionViewDelegateFlowLayout {
                 
             case .icon:
                 if numberOfitemInSection <= 3 || isTabViewEqualScreenWidth {
-                    tabBottomLayer.frame = CGRect.init(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)), height: tabBottomBarHeight)
+                    if self.isInitialCall {
+                        self.isInitialCall = false
+                        tabBottomLayer.frame = CGRect.init(x: CGFloat(CGFloat(self.intialSelectedTab) *  CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)) - 1), y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)), height: tabBottomBarHeight)
+                        detailCollectionView.scrollToItem(at: IndexPath.init(item: self.intialSelectedTab, section: 0), at: [], animated: false)
+                    }
                     return CGSize(width: CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)), height: CGFloat(tabCollectionView.frame.size.height))
+
                 } else if indexPath.row == 0 {
+                    if self.isInitialCall {
+//                    self.isInitialCall = false
                     tabBottomLayer.frame = CGRect.init(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: self.tabBarData.iconTabWidth, height: tabBottomBarHeight)
-                    
+                    }
                 }
                 return CGSize(width: self.tabBarData.iconTabWidth, height:  CGFloat(tabCollectionView.frame.size.height))
                 

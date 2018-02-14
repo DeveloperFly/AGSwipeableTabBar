@@ -23,8 +23,13 @@ class ViewController: UIViewController, CommonTabDelegate {
         tabView.tabBottomBarHeight = 2
         tabView.tabBarBackgroundColor = UIColor.red.cgColor
         tabView.tabBarData.buttonTitleTextArray = arrayTitle
-        tabView.tabBarData.tabHeader = .title
+        tabView.tabBarData.tabHeader = .icon
+        tabView.tabBarData.buttonNormalImageArray = Array.init(repeating: UIImage(named: "homeUnselectdIcon")!, count: tabView.numberOfitemInSection)
+        tabView.tabBarData.buttonSelectedImageArray = Array.init(repeating: UIImage(named: "HomeSlectedIcon")!, count: tabView.numberOfitemInSection)
+
+        tabView.tabBarData.buttonSelectedIconColor = UIColor.black
         tabView.tabBarData.buttonNormalFontColor = UIColor.black
+        tabView.sepratorViewBackgroundColor = UIColor.green
         tabView.initialSelectedTab(index: 2)
     }
     
@@ -37,6 +42,7 @@ class ViewController: UIViewController, CommonTabDelegate {
     
     func cellForItemForDetailView(atIndex indexPath: IndexPath) -> UICollectionViewCell {
         let cell = tabView.detailCollectionView.dequeueReusableCell(withReuseIdentifier: "TabOneCollectionViewCell", for: indexPath) as! TabOneCollectionViewCell
+        cell.configureCell(indexPath: indexPath)
         return cell
     }
     

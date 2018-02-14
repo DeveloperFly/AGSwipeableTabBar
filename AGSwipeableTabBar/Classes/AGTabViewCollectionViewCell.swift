@@ -36,9 +36,13 @@ class AGTabViewCollectionViewCell: UICollectionViewCell {
     }
     
     func setUpCollectionViewCell() {
-        buttonTabBar.frame = CGRect(x: 2, y: 0, width: self.frame.size.width - 4, height: self.frame.size.height)
+        buttonTabBar.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height)
         buttonTabBar.isUserInteractionEnabled = false
         buttonTabBar.backgroundColor = UIColor.clear
+//        buttonTabBar.layer.cornerRadius = 20
+//        buttonTabBar.layer.borderColor = UIColor.black.cgColor
+//        buttonTabBar.layer.borderWidth = 5.0
+//        buttonTabBar.layer.masksToBounds = true
         self.contentView.addSubview(buttonTabBar)
     }
     
@@ -58,15 +62,26 @@ class AGTabViewCollectionViewCell: UICollectionViewCell {
     }
     
     func setTabIconViewButtonData(_ tabButtonData: TabButtonData, indexPath: IndexPath) {
-        var icon: UIImage!
-        if tabButtonData.buttonImageArray.count == 0 {
-            icon = UIImage(named: "Home_icon")
+        var iconNormal: UIImage!
+        var iconSelected: UIImage!
+
+        if tabButtonData.buttonSelectedImageArray.count == 0 {
+            iconSelected = UIImage(named: "Home_icon")
         } else {
-            icon = tabButtonData.buttonImageArray[indexPath.row]
+            iconSelected = tabButtonData.buttonSelectedImageArray[indexPath.row]
         }
-        buttonTabBar.setImage(icon, for: .normal)
+        
+        if tabButtonData.buttonNormalImageArray.count == 0 {
+            iconNormal = UIImage(named: "Home_icon")
+        } else {
+            iconNormal = tabButtonData.buttonNormalImageArray[indexPath.row]
+        }
+        buttonTabBar.setImage(iconSelected, for: .selected)
+        buttonTabBar.setImage(iconNormal, for: .normal)
         if buttonTabBar.isSelected {
-            buttonTabBar.tintColor = tabButtonData.buttonSelectedFontColor
+            buttonTabBar.tintColor = tabButtonData.buttonSelectedIconColor
+        } else {
+            buttonTabBar.tintColor = tabButtonData.buttonNormalIconColor
         }
     }
     

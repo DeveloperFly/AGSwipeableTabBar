@@ -23,8 +23,8 @@ class TabOneTableViewCell: UITableViewCell {
     }
     
     //MARK:- Configure Cell
-    func configureCell(_ indexPath: IndexPath) {
-        label.text = "Label \(indexPath.row + 1)"
+    func configureCell(_ indexPath: IndexPath, indexPathCollectionCell: IndexPath) {
+        label.text = "Label \(indexPath.row + 1) = cell \(indexPathCollectionCell.row + 1)"
     }
     
 }

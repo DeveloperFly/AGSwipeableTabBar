@@ -11,6 +11,7 @@ import UIKit
 class TabOneCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var tableViewTabOne: UITableView!
+    var indexPathCollectionViewCell: IndexPath!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,17 +22,21 @@ class TabOneCollectionViewCell: UICollectionViewCell {
         tableViewTabOne.rowHeight = UITableViewAutomaticDimension
         tableViewTabOne.sectionHeaderHeight = 0.0
     }
+    
+    func configureCell(indexPath: IndexPath) {
+        self.indexPathCollectionViewCell = indexPath
+    }
 
 }
 
 extension TabOneCollectionViewCell: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 50
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewTabOne.dequeueReusableCell(withIdentifier: "TabOneTableViewCell", for: indexPath) as! TabOneTableViewCell
-        cell.configureCell(indexPath)
+        cell.configureCell(indexPath, indexPathCollectionCell: indexPathCollectionViewCell)
         return cell
     }
     

@@ -33,9 +33,9 @@ TODO: AGSwipeableTabBar use for swipeable Tab bar. This swipeable tab bar is cre
 
   s.source_files = 'AGSwipeableTabBar/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'AGSwipeableTabBar' => ['AGSwipeableTabBar/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'AGSwipeableTabBar' => ['AGSwipeableTabBar/Assets/*.png']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
