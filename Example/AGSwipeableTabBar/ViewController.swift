@@ -30,7 +30,8 @@ class ViewController: UIViewController, CommonTabDelegate {
         tabView.tabBarData.buttonSelectedIconColor = UIColor.black
         tabView.tabBarData.buttonNormalFontColor = UIColor.black
         tabView.sepratorViewBackgroundColor = UIColor.green
-        tabView.initialSelectedTab(index: 2)
+        tabView.tabBarData.iconTabWidth = 100
+        tabView.initialSelectedTab(index: 6)
     }
     
     override func didReceiveMemoryWarning() {

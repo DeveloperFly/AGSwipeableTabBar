@@ -16,9 +16,9 @@ public protocol CommonTabDelegate : class {
 //@IBDesignable
 open class AGCommonTabView: UIControl {
     open weak var delegate: CommonTabDelegate?
-
+    
     //MARK: - Custom Views
-    open var tabCollectionView: UICollectionView!
+    var tabCollectionView: UICollectionView!
     open var detailCollectionView: UICollectionView!
     open var sepratorView = UIView()
     open var tabBottomLayer = CALayer()
@@ -41,7 +41,7 @@ open class AGCommonTabView: UIControl {
      iconTabWidth 
      */
     public var tabBarData: TabButtonData! = TabButtonData.init(tabBarFeturesDictionary: [:])
-
+    
     //Tab CollectionView Properties
     @IBInspectable open var heightTabViewPerportional: CGFloat = 0.07 {
         didSet {
@@ -58,6 +58,12 @@ open class AGCommonTabView: UIControl {
     open var tabBarBackgroundColor: CGColor? {
         didSet {
             self.tabBottomLayer.backgroundColor = tabBarBackgroundColor ?? UIColor.blue.cgColor
+        }
+    }
+    
+    open var tabViewShowHorizontalScrollIndicator: Bool = false {
+        didSet {
+            self.tabCollectionView.showsHorizontalScrollIndicator = tabViewShowHorizontalScrollIndicator
         }
     }
     
@@ -78,8 +84,8 @@ open class AGCommonTabView: UIControl {
     }
     
     /* By defaul Tab view is equal to screen width
-    */
-    var isTabViewEqualScreenWidth: Bool = true {
+     */
+    var isTabViewEqualScreenWidth: Bool = false {
         didSet {
         }
     }
@@ -104,7 +110,7 @@ open class AGCommonTabView: UIControl {
         didSet {
         }
     }
-
+    
     //Set tha bottomTabBar is visible or not
     @IBInspectable open var isShowBottomTabBar: Bool = false {
         didSet {
@@ -133,6 +139,8 @@ open class AGCommonTabView: UIControl {
         self.tabCollectionView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * heightTabViewPerportional )
         self.detailCollectionView.frame = CGRect(x: 0, y: ((self.frame.height * heightTabViewPerportional) + sepratorViewHeight), width: self.frame.width, height: (self.frame.height - ((self.frame.height * heightTabViewPerportional) + sepratorViewHeight)))
         sepratorView.frame = CGRect(x: 0, y: (self.frame.height * heightTabViewPerportional), width: self.frame.width, height: sepratorViewHeight)
+        tabCollectionView.scrollToItem(at: IndexPath(item: self.intialSelectedTab, section: 0), at: [.centeredHorizontally], animated: false)
+        detailCollectionView.scrollToItem(at: IndexPath(item: self.intialSelectedTab, section: 0), at: [.centeredHorizontally], animated: false)
     }
     
     override init(frame: CGRect) {
@@ -162,11 +170,12 @@ open class AGCommonTabView: UIControl {
         self.tabCollectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
         self.tabCollectionView.backgroundColor = tabViewBottomColor
         tabCollectionView.register(AGTabViewCollectionViewCell.self, forCellWithReuseIdentifier: agTabViewCellIdentifier)
+        tabCollectionView.showsHorizontalScrollIndicator = tabViewShowHorizontalScrollIndicator
         tabCollectionView.delegate = self
         tabCollectionView.dataSource = self
         configureView()
         self.addSubview(tabCollectionView)
-
+        
     }
     
     func drawSepratorView() {
@@ -200,7 +209,7 @@ open class AGCommonTabView: UIControl {
     
     //MARK: - Update Methods
     func updateTabCollectionViewHeight() {
-   
+        
     }
     
 }
@@ -262,14 +271,14 @@ extension AGCommonTabView {
         }
         return 0
     }
-
+    
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         if collectionView.isEqual(tabCollectionView) {
             return 0
         }
         return 0
     }
-
+    
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout Methods
@@ -285,10 +294,14 @@ extension AGCommonTabView: UICollectionViewDelegateFlowLayout {
                         detailCollectionView.scrollToItem(at: IndexPath.init(item: self.intialSelectedTab, section: 0), at: [], animated: false)
                     }
                     return CGSize(width: CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)), height: CGFloat(tabCollectionView.frame.size.height))
-                } else if indexPath.row == 0 {
-                    if self.isInitialCall {
-//                        self.isInitialCall = false
-                        tabBottomLayer.frame = CGRect.init(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: (tabBarData.buttonTitleTextArray.count == 0 ? getWidthForCell(withMessage: "Tab \(indexPath.item + 1)") : (getWidthForCell(withMessage: tabBarData.buttonTitleTextArray[indexPath.row]) + 5)), height: tabBottomBarHeight)
+                } else {
+                    if self.isInitialCall && indexPath.row == self.intialSelectedTab {
+                        self.isInitialCall = false
+                        let positionX: CGFloat = tabBarData.buttonTitleTextArray.count == 0 ? getWidthForCell(withMessage: "Tab \(indexPath.item + 1)") : CGFloat(getLeadingPointForCell(indexPath: indexPath) + CGFloat(8 * indexPath.row))
+                        let poistionY: CGFloat = (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight
+                        let widthForFrame: CGFloat = tabBarData.buttonTitleTextArray.count == 0 ? getWidthForCell(withMessage: "Tab \(indexPath.item + 1)") : (getWidthForCell(withMessage: tabBarData.buttonTitleTextArray[indexPath.row]) + 8)
+                        let heightForFrame: CGFloat = tabBottomBarHeight
+                        tabBottomLayer.frame = CGRect.init(x: positionX, y: poistionY, width: widthForFrame, height: heightForFrame)
                     }
                 }
                 return CGSize(width: (tabBarData.buttonTitleTextArray.count == 0 ? getWidthForCell(withMessage: "Tab \(indexPath.item + 1)") : getWidthForCell(withMessage: tabBarData.buttonTitleTextArray[indexPath.row])) + 8, height: CGFloat(tabCollectionView.frame.size.height))
@@ -301,11 +314,15 @@ extension AGCommonTabView: UICollectionViewDelegateFlowLayout {
                         detailCollectionView.scrollToItem(at: IndexPath.init(item: self.intialSelectedTab, section: 0), at: [], animated: false)
                     }
                     return CGSize(width: CGFloat(Float(tabCollectionView.frame.size.width) / Float(numberOfitemInSection)), height: CGFloat(tabCollectionView.frame.size.height))
-
-                } else if indexPath.row == 0 {
-                    if self.isInitialCall {
-//                    self.isInitialCall = false
-                    tabBottomLayer.frame = CGRect.init(x: 0, y: (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight, width: self.tabBarData.iconTabWidth, height: tabBottomBarHeight)
+                    
+                } else {
+                    if self.isInitialCall && indexPath.row == self.intialSelectedTab {
+                        self.isInitialCall = false
+                        let positionX: CGFloat = getLeadingPointForCell(indexPath: indexPath)
+                        let poistionY: CGFloat = (self.frame.height * heightTabViewPerportional) - tabBottomBarHeight
+                        let widthForFrame: CGFloat = self.tabBarData.iconTabWidth
+                        let heightForFrame: CGFloat = tabBottomBarHeight
+                        tabBottomLayer.frame = CGRect.init(x: positionX, y:poistionY, width: widthForFrame, height: heightForFrame)
                     }
                 }
                 return CGSize(width: self.tabBarData.iconTabWidth, height:  CGFloat(tabCollectionView.frame.size.height))
@@ -324,6 +341,7 @@ extension AGCommonTabView: UICollectionViewDelegateFlowLayout {
 //MARK: - UIScrollViewDelegate Methods
 extension AGCommonTabView: UIScrollViewDelegate {
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(scrollView.contentOffset.x)
         let indexPath = IndexPath(row: getCurrentPage(), section: 0)
         if (indexPath.row >= 0 && indexPath.row < numberOfitemInSection ) {
             if scrollView == detailCollectionView {
@@ -331,7 +349,11 @@ extension AGCommonTabView: UIScrollViewDelegate {
                 if cell == nil {
                     return
                 }
-                
+                let indexPath = IndexPath(row: getCurrentPage(), section: 0)
+                if indexPath.row < numberOfitemInSection && indexPath.row >= 0 {
+                    tabCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: [.centeredHorizontally])
+                    callCurrentPageDelegate()
+                }
                 UIView.animate(withDuration: 0.3, animations: {
                     self.tabBottomLayer.frame = CGRect.init(x: (cell?.frame.origin.x)!, y: self.tabCollectionView.frame.size.height - self.tabBottomBarHeight, width: (cell?.frame.size.width)!, height: self.tabBottomBarHeight)
                 })
@@ -339,19 +361,24 @@ extension AGCommonTabView: UIScrollViewDelegate {
         }
     }
     
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        //        print(scrollView.contentOffset)
+    }
+    
     open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollView == tabCollectionView {
-            
-        }else{
-            let indexPath = IndexPath(row: getCurrentPage(), section: 0)
-            if indexPath.row < numberOfitemInSection && indexPath.row >= 0 {
-                tabCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: [.centeredHorizontally])
-                callCurrentPageDelegate()
-            }
-        }
+        //        if scrollView == tabCollectionView {
+        //
+        //        } else {
+        //            let indexPath = IndexPath(row: getCurrentPage(), section: 0)
+        //            if indexPath.row < numberOfitemInSection && indexPath.row >= 0 {
+        //                tabCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: [.centeredHorizontally])
+        //                callCurrentPageDelegate()
+        //            }
+        //        }
         // dismiss keyboard on swipe
         self.endEditing(true)
     }
+    
     func getCurrentPage() -> Int {
         let screenWidth: CGFloat = UIScreen.main.bounds.size.width
         return Int(ceilf((Float(detailCollectionView.contentOffset.x) / Float(screenWidth))))
@@ -360,6 +387,7 @@ extension AGCommonTabView: UIScrollViewDelegate {
     open func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         callCurrentPageDelegate()
     }
+    
 }
 
 //MARK:- AGCommonTabView Helper Methods
@@ -372,11 +400,29 @@ extension AGCommonTabView {
     
     func getWidthForCell(withMessage message: String) -> CGFloat {
         let font = UIFont.systemFont(ofSize: 17.0)
-
+        
         let attributedText = NSAttributedString(string: message, attributes: [NSAttributedStringKey.font: font])
         let rectSize = CGSize(width: CGFloat(CGFloat.greatestFiniteMagnitude), height: CGFloat(28))
         let rect = attributedText.boundingRect(with: rectSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
         return ceil(rect.size.width)
+    }
+    
+    func getLeadingPointForCell(indexPath:IndexPath) -> CGFloat {
+        if self.tabBarData.tabHeader == .title {
+            var leadingPoint: CGFloat = 0.0
+            let font = UIFont.systemFont(ofSize: 17.0)
+            for index in 0..<indexPath.row {
+                let item = self.tabBarData.buttonTitleTextArray[index]
+                let attributedText = NSAttributedString(string: item, attributes: [NSAttributedStringKey.font: font])
+                let rectSize = CGSize(width: CGFloat(CGFloat.greatestFiniteMagnitude), height: CGFloat(28))
+                let rect = attributedText.boundingRect(with: rectSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+                leadingPoint = leadingPoint + ceil(rect.size.width)
+            }
+            return leadingPoint
+        } else {
+            let leadingPoint: CGFloat = CGFloat(self.tabBarData.iconTabWidth) * CGFloat(indexPath.row)
+            return leadingPoint
+        }
     }
     
 }

@@ -15,15 +15,16 @@ class TabOneCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tableViewTabOne.register(UINib(nibName: "TabOneTableViewCell", bundle: nil), forCellReuseIdentifier: "TabOneTableViewCell")
-        tableViewTabOne.delegate = self
-        tableViewTabOne.dataSource = self
-        tableViewTabOne.estimatedRowHeight = 506.0
-        tableViewTabOne.rowHeight = UITableViewAutomaticDimension
-        tableViewTabOne.sectionHeaderHeight = 0.0
     }
     
     func configureCell(indexPath: IndexPath) {
+        tableViewTabOne.register(UINib(nibName: "TabOneTableViewCell", bundle: nil), forCellReuseIdentifier: "TabOneTableViewCell")
+        tableViewTabOne.estimatedRowHeight = 506.0
+        tableViewTabOne.rowHeight = UITableViewAutomaticDimension
+        tableViewTabOne.sectionHeaderHeight = 0.0
+        tableViewTabOne.delegate = self
+        tableViewTabOne.dataSource = self
+        tableViewTabOne.reloadData()
         self.indexPathCollectionViewCell = indexPath
     }
 
