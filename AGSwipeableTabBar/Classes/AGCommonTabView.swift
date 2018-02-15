@@ -85,7 +85,7 @@ open class AGCommonTabView: UIControl {
     
     /* By defaul Tab view is equal to screen width
      */
-    var isTabViewEqualScreenWidth: Bool = false {
+    var isTabViewEqualScreenWidth: Bool = true {
         didSet {
         }
     }
