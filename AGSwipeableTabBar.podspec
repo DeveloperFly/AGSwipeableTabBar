@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AGSwipeableTabBar'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'AGSwipeableTabBar is use for swipeable Tab bar. which is directly used by assign class into the view'
 
 # This description is used to generate tags and improve search results.
