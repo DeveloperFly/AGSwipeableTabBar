@@ -341,7 +341,6 @@ extension AGCommonTabView: UICollectionViewDelegateFlowLayout {
 //MARK: - UIScrollViewDelegate Methods
 extension AGCommonTabView: UIScrollViewDelegate {
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.x)
         let indexPath = IndexPath(row: getCurrentPage(), section: 0)
         if (indexPath.row >= 0 && indexPath.row < numberOfitemInSection ) {
             if scrollView == detailCollectionView {
@@ -362,7 +361,6 @@ extension AGCommonTabView: UIScrollViewDelegate {
     }
     
     open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        //        print(scrollView.contentOffset)
     }
     
     open func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -423,26 +421,6 @@ extension AGCommonTabView {
             let leadingPoint: CGFloat = CGFloat(self.tabBarData.iconTabWidth) * CGFloat(indexPath.row)
             return leadingPoint
         }
-    }
-    
-}
-
-//MARK: - UIView Touch event Delegate Methods
-extension AGCommonTabView {
-    open override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        return true
-    }
-    
-    open override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        return true
-    }
-    
-    open override func cancelTracking(with event: UIEvent?) {
-        
-    }
-    
-    open override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-        
     }
     
 }
