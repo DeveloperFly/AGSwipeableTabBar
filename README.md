@@ -5,8 +5,11 @@
 [![License](https://img.shields.io/cocoapods/l/AGSwipeableTabBar.svg?style=flat)](http://cocoapods.org/pods/AGSwipeableTabBar)
 [![Platform](https://img.shields.io/cocoapods/p/AGSwipeableTabBar.svg?style=flat)](http://cocoapods.org/pods/AGSwipeableTabBar)
 
-## Example
-![Example](https://github.com/DeveloperFly/AGSwipeableTabBar/blob/master/Example/Resources/Images/Simulator%20Screen%20Shot%20-%20iPhone%208%20Plus%20-%202018-02-09%20at%2015.25.28.png)
+## Example For Text SwipeableTabBar 
+![Example](https://github.com/DeveloperFly/AGSwipeableTabBar/blob/master/Example/Resources/Gif/ExamppleImageText_SwipeableTab.gif)
+
+## Example For icon SwipeableTabBar 
+![Example](https://github.com/DeveloperFly/AGSwipeableTabBar/blob/master/Example/Resources/Gif/ExamppleImageIcon_SwipeableTab.gif)
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
@@ -20,7 +23,7 @@ pod 'AGSwipeableTabBar'
 ```
 
 ## Example for assign the AGCommonTabView 
-![Example](https://github.com/DeveloperFly/AGSwipeableTabBar/blob/master/Example/Resources/Images/Screen%20Shot%202018-02-09%20at%202.50.56%20PM.png)
+![Example](https://github.com/DeveloperFly/AGSwipeableTabBar/blob/master/Example/Resources/Images/ExamppleImageSet_AGCommonTabView.png)
 
 ## Properties which are Directly set by storyborad 
 * heightTabViewPerportional :- Set the height of tab view with repect to your view.
@@ -28,12 +31,13 @@ pod 'AGSwipeableTabBar'
 * numberOfitemInSection: - Pass the numer of tabs you want.
 * intialSelectedTab: - Pass the index which you want pre selected.
 * isShowBottomTabBar: - Set the Bool value Tab view bottom bar is shown or not.
+* isTabViewEqualScreenWidth: - Set the Bool Value for Tab bar width is eqaul to AGCommonTabView or not.
 
 
-![Exapmle](https://github.com/DeveloperFly/AGSwipeableTabBar/blob/master/Example/Resources/Images/Screen%20Shot%202018-02-09%20at%202.51.32%20PM.png)
+![Exapmle](https://github.com/DeveloperFly/AGSwipeableTabBar/blob/master/Example/Resources/Images/ExamppleImage_AGCommonTabProperties.png)
 
 
-## Properties which are directly set by view Instance 
+## Properties which are directly set by view Instance (Example Data)
 ``` swift
  let arrayTitle = ["TableView", "CollectionView", "View", "Button", "Label", "SegmentedController", "switch", "progressView", "Container", "commonView"]
  @IBOutlet weak var tabView: AGCommonTabView!
@@ -44,10 +48,16 @@ pod 'AGSwipeableTabBar'
         tabView.delegate = self
         tabView.isShowBottomTabBar = true
         tabView.tabBottomBarHeight = 2
+        tabView.tabBarBackgroundColor = UIColor.red.cgColor
         tabView.tabBarData.buttonTitleTextArray = arrayTitle
-        tabView.tabBarData.tabHeader = .title
+        tabView.tabBarData.tabHeader = .title // .icon
+        tabView.tabBarData.buttonNormalImageArray = Array.init(repeating: UIImage(named: "homeUnselectdIcon")!, count: tabView.numberOfitemInSection)
+        tabView.tabBarData.buttonSelectedImageArray = Array.init(repeating: UIImage(named: "HomeSlectedIcon")!, count: tabView.numberOfitemInSection)
+        tabView.tabBarData.buttonSelectedIconColor = UIColor.black
         tabView.tabBarData.buttonNormalFontColor = UIColor.black
-        tabView.initialSelectedTab(index: 1)
+        tabView.sepratorViewBackgroundColor = UIColor.green
+        tabView.tabBarData.iconTabWidth = 100
+        tabView.initialSelectedTab(index: 2)
     }
 ```
 
